@@ -1,0 +1,37 @@
+from datetime import datetime
+# input, storing current time as string
+date_time = str(datetime.now()) 
+
+# convertion
+current=datetime.strptime(date_time , "%Y-%m-%d %H:%M:%S.%f")
+Date = current.strftime("%Y %b %d")
+Time = current.strftime("%H:%M:%S")
+
+
+# returns name of all columns containg at least 1 null value
+data.loc[:, data.isnull().any()].columns
+
+# data.dropna(subset=[]) : subset contain list of all column names, for which the rows have to be dropped
+data.dropna(subset=['Rear.seat.room'], inplace=True)
+
+# filling in missing values
+data['Luggage.room'].replace(to_replace=[None], value=data['Luggage.room'].mode(), inplace=True)
+
+# setting appropriate datatypes
+data["Cylinders"]=data.loc[:,"Cylinders"].astype("int64")
+
+# check multiple column conditions
+data.loc[data['bill_length_mm'].isnull() | data['bill_depth_mm'].isnull() | data['flipper_length_mm'].isnull() | data['body_mass_g'].isnull()]
+
+# ordinal encoding for ordinal data
+mapping = {"None":0, "Driver only":1, "Driver & Passenger":2}
+data["AirBags"] = data["AirBags"].replace(mapping)
+
+# one hot encoding for nominal data of equal bias
+data = pd.get_dummies(data, columns = ['DriveTrain', 'Origin', 'Man.trans.avail'])
+
+# label encoding for nominal data
+from sklearn.preprocessing import LabelEncoder
+lbcode = LabelEncoder()
+data['Type']=lbcode.fit_transform(data['Type'])
+
