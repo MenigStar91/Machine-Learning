@@ -156,7 +156,7 @@ def gbm_cl_bo(max_depth, n_estimators):
     params_gbm = {}
     params_gbm['max_depth'] = round(max_depth)
     params_gbm['n_estimators'] = round(n_estimators)
-    scores = cross_val_score(RFC(random_state=42, **params_gbm),                                    X_train_ros, y_train_ros, scoring='roc_auc', cv=5).mean()
+    scores = cross_val_score(RFC(random_state=42, **params_gbm),  X_train_ros, y_train_ros, scoring='roc_auc', cv=5).mean()
     score = scores.mean()
     return score
 
