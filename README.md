@@ -9,4 +9,4 @@ joblib
 seaborn
 matplotlib
 torch 
-terchsummary
+torchsummary
